@@ -16,7 +16,7 @@ yum install curl -y
 yum install zip -y 
 yum install vim -y
 yum install net-tools -y
-yum install systat -y
+yum install sysstat -y
 yum install epel-release
 
 echo "installation is now completed" 
