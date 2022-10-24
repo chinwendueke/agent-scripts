@@ -5,23 +5,22 @@
 #Usage: ./Install-jenkins.sh
 
 echo "starting Jenkins installation. this will take a few min......"
-sleep 30
+sleep 15
 #
 echo "confirming linux version"
-sleep 30
+sleep 5
 
 DISTRO=$(grep -ioP '^Name=\K.+' /etc/os-release | sed 's/"//g')
 UBU='Ubuntu'
 RHEL='(CentOS.*)|(Fedora)|(Red Hat.*)'
 ORANGE='\033[0;33m'
 NOCOLOR='\033[0m'
-
-if [[ $DISTRO == $UBU ]];
-then 
+#
+if [[ $DISTRO == $UBU ]]; then 
 	echo " OS: $DISTRO"
-	sleep 30
-
-echo "............"
+	sleep 10
+#
+	echo "............"
 sudo apt install openjdk-11-jre -y
 java -version
 #
@@ -69,10 +68,10 @@ echo ".................."
 echo "Jenkins is ready please get ip and type it on your browser with your port number"
 
 else
- 52         echo -e "Operating System is NOT supported. Exiting..............."
- 53         echo " ..........."
- 54         exit 5
- 55 fi
- 56 read -p "Jenkins has been installed. Press any key to exit..."
- 57 exit
-
+     echo -e "Operating System is NOT supported. Exiting..............."
+     echo " ..........."
+	 exit 5
+ fi
+ #
+ read -p "Jenkins has been installed. Press any key to exit..."
+ exit
