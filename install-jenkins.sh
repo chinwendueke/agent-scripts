@@ -47,21 +47,21 @@ then
 	echo "  OS: $DISTRO"
 	echo "..............."
 	echo "Installing EPEL..."
-	sleep 30
-
-#sudo yum upgrade
+	sleep 15
+sudo yum install epel-release
+sudo yum upgrade
 # Add required dependencies for the jenkins package
-#sudo yum install java-11-openjdk
+sudo yum install java-11-openjdk
 curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo
 sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum install jenkins
+sudo yum install jenkins -y
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
 #
 rpm -qa firewalld
-sudo yum install firewalld
+sudo yum install firewalld -y
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
 sudo systemctl status firewalld
