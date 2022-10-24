@@ -62,6 +62,5 @@ echo "something went wrong with sysstat installation"
 sleep 120
 exit 5
 fi 
-sudo apt install epel-release
 
 echo "installations are now completed" 
