@@ -49,19 +49,24 @@ then
 	echo "Installing EPEL..."
 	sleep 30
 
-sudo wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-sudo yum upgrade
+#sudo yum upgrade
 # Add required dependencies for the jenkins package
-sudo yum install java-11-openjdk
+#sudo yum install java-11-openjdk
+curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 sudo yum install jenkins
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
-firewall-cmd --zone=public --add-service=http --permanent
-firewall-cmd --reload
+#
+rpm -qa firewalld
+sudo yum install firewalld
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+sudo systemctl status firewalld
+sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+sudo firewall-cmd --reload
 #
 echo "finishing installattion"
 echo ".................."
@@ -73,5 +78,5 @@ else
 	 exit 5
  fi
  #
- read -p "Jenkins has been installed. Press any key to exit..."
+ read -p "Jenkins has been installed. Press enter key to exit..."
  exit
