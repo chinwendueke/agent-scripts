@@ -7,16 +7,12 @@
 echo "starting Docker installation shortly, this will take a few minutes......"
 sleep 30
 
-DISTRO=$(grep -ioP '^Name=\K.+' /etc/os-release | sed 's/"//g')
-UBU='Ubuntu'
-RHEL='(CentOS.*)|(Fedora)|(Red Hat.*)'
-ORANGE='\033[0;33m'
-NOCOLOR='\033[0m'
-
-if [[ $DISTRO =~ $RHEL ]];
+cat /etc/*release | head -4 |tail -1 | awk -F= '{print$2}'
+op=`cat /etc/*release | head -4 |tail -1 | awk -F= '{print$2}'`
+if [ $op == centos ];
 then
-	echo " OS:$DISTRO"
-	sleep 20
+	echo " OS:$op"
+	sleep 10
 	echo "................."
 	
 yum check-update
@@ -28,16 +24,14 @@ systemctl enable docker
 systemctl status docker
 docker run hello-world
 
-elif [[ $DISTRO == $UBU ]]; 
+elif [ $op == ubuntu ]; 
 then
-	echo "  OS: $DISTRO"
-	sleep 30
-echo "Installing EPEL..."
-
-echo "starting Docker installation shortly, this will take a few minutes..."
-echo "......................."
+	echo "  OS: $op"
+	sleep 10
+echo "system updates .............."
 
 sudo apt-get update
+echo "starting Docker installation shortly, this will take a few minutes..."
 sudo apt install docker.io -y
 sudo snap install docker
 docker --version
@@ -52,7 +46,3 @@ else
 	echo " ..........."
 	exit 5
 fi
-read -p "Docker has been installed. Press any key to exit..."
-exit
-
-

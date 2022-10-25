@@ -1,21 +1,41 @@
 #!/bin/bash
+#Author:
+#Date:
+#Description:
+
+su - vagrant
+
+#java installation
+
+sudo yum update -y
+sudo yum install java-11-openjdk-devel -y
+sudo yum install java-11-openjdk -y
+
+#Download sonarqube lastest version
+cd /opt
+sudo yum install wget -y
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.3.0.51899.zip
+
+#Extracting packages
+sudo yum install unzip
+sudo unzip /opt/sonarqube-9.3.0.51899.zip
+
+
+#change ownership
+sudo chown -R vagrant:vagrant /opt/sonarqube-9.3.0.51899
+cd /opt/sonarqube-9.3.0.51899/bin/linux-x86-64 
+./sonar.sh start
+
+#Connect to Sonarqube by opening the port #9000
+sudo firewall-cmd --permanent --add-port=9000/tcp
+sudo firewall-cmd --reload
 
 
 
 
 
-sudo adduser --system --no-create-home --group --disabled-login sonarqube
-sudo mkdir /opt/sonarqube
-sudo apt-get install unzip
 
 
 
 
 
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
-sudo apt-get -y install postgresql postgresql-contrib
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
