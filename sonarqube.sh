@@ -1,9 +1,15 @@
 #!/bin/bash
 #Author:
 #Date:
-#Description:
+#Description:Installing sonarqube on centos 7
+#This script must be run as a user, else it won't work
 
-su - vagrant
+user=`whoami`
+if [ $user != vagrant ]
+then
+echo "log in as vagrant"
+exit 1
+fi
 
 #java installation
 
