@@ -36,8 +36,8 @@ then
 echo "  OS: $DISTRO"
     echo ".................."
     echo "  Installing EPEL..."
-    sleep 30
-sudo apt install epel-release -y
+    sleep 2
+
 sudo apt update -y
 sudo apt install sysstat -y
 sudo apt install net-tools -y
