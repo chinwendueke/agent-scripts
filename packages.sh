@@ -25,6 +25,9 @@ sudo yum install zip -y
 sudo yum install vim -y
 sudo yum install net-tools -y
 sudo yum install sysstat -y
+sudo yum install git -y
+sudo yum install wget -y
+sudo yum install unzip -y
 #
 echo "Installation is now completed"
 
@@ -33,8 +36,8 @@ then
 echo "  OS: $DISTRO"
     echo ".................."
     echo "  Installing EPEL..."
-    sleep 30
-sudo apt install epel-release -y
+    sleep 2
+
 sudo apt update -y
 sudo apt install sysstat -y
 sudo apt install net-tools -y
@@ -42,8 +45,10 @@ sudo apt install vim -y
 sudo apt install zip -y
 sudo apt install curl -y
 sudo apt install finger -y
-
-
+sudo apt install git -y
+sudo apt install wget -y
+sudo apt install unzip -y
+#
 else
 	echo "Something went wrong, Operating systems not supported......please try again"
 	echo "..................."
