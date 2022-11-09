@@ -6,8 +6,8 @@ RHEL='(CentOS.*)|(Fedora)|(Red Hat.*)'
 ALP=(Alpine)
 ORC=(Oracle)
 DEB=(Debian)
-
-
+#
+#
 if [ $OPERS = $RHEL ]; then
  
 echo "OS: $OPERS"
