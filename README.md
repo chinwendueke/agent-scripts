@@ -1,1 +1,1 @@
-jenkins-ngrok-git-webhook
+jenkins-ngrok-git-webhook-pipeline
